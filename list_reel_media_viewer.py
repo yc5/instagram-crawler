@@ -9,6 +9,7 @@ my_headers = {
     'X-IG-App-ID': '936619743392459',
     'Cookie': 'sessionid='+session_id
 }
+count = 0
 
 def list_reel_media_viewer(id, max):
   params = {
@@ -25,10 +26,12 @@ def list_reel_media_viewer(id, max):
     is_private = x['is_private']
 
     print('%s,%s,%s,%s' % (pk, full_name, username, is_private))
+    global count
+    count += 1
 
   if r['next_max_id'] :
     list_reel_media_viewer(id, r['next_max_id'])
 
 
 list_reel_media_viewer(story_id,0)
-  
+print(story_id, "count:" , count)
